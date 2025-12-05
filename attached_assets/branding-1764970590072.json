@@ -1,0 +1,109 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "Open Sans",
+      "role": "body"
+    },
+    {
+      "family": "Arial",
+      "role": "body"
+    },
+    {
+      "family": "Helvetica",
+      "role": "body"
+    }
+  ],
+  "colors": {
+    "primary": "#E37E16",
+    "accent": "#4770DB",
+    "background": "#FEF8F3",
+    "textPrimary": "#535250",
+    "link": "#0E1B4D"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Open Sans",
+      "heading": "Open Sans"
+    },
+    "fontStacks": {
+      "heading": [
+        "Open Sans",
+        "sans-serif"
+      ],
+      "body": [
+        "Open Sans",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "Open Sans",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "46px",
+      "h2": "27.6px",
+      "body": "20.7px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "0px"
+  },
+  "components": {
+    "input": {
+      "borderColor": "#CCCCCC",
+      "borderRadius": "0px"
+    },
+    "buttonPrimary": {
+      "background": "#E37E16",
+      "textColor": "#1A1A1A",
+      "borderRadius": "41px",
+      "shadow": "none"
+    },
+    "buttonSecondary": {
+      "background": "#4770DB",
+      "textColor": "#EFF0F5",
+      "borderRadius": "41px",
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "logo": "File saved at: attached_assets/logo.jpg",
+    "favicon": "File saved at: attached_assets/favicon.png",
+    "ogImage": "http://althenayanfarms.com/cdn/shop/files/logo_1dcf5511-e7ff-4ba7-b9ca-89ad7c00a0d4.png?v=1741855120"
+  },
+  "__framework_hints": [],
+  "__llm_logo_reasoning": {
+    "selectedIndex": 0,
+    "reasoning": "Logo #0 visually represents 'Al Thenayan Farms' and is located in the header, linking to the homepage, making it the most suitable choice for the brand logo.",
+    "confidence": 0.9
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": 2,
+      "text": "اشتر الآن",
+      "reasoning": "Button #2 ('اشتر الآن') has a vibrant orange background (#E37E16) and action-oriented text, making it the primary call-to-action. It also has the class 'button--primary', indicating its importance as a main action button."
+    },
+    "secondary": {
+      "index": 1,
+      "text": "انتقل إلى المحتوى",
+      "reasoning": "Button #1 ('انتقل إلى المحتوى') has a different background color (#4770DB) from the primary button and serves a secondary function, making it suitable as the secondary button."
+    },
+    "confidence": 0.95
+  },
+  "personality": {
+    "tone": "modern",
+    "energy": "medium",
+    "targetAudience": "general consumers interested in farm products"
+  },
+  "designSystem": {
+    "framework": "tailwind",
+    "componentLibrary": null
+  },
+  "confidence": {
+    "buttons": 0.95,
+    "colors": 0.9,
+    "overall": 0.925
+  }
+}
