@@ -35,8 +35,10 @@ import {
   Globe,
   Volume2,
   VolumeX,
+  Check,
+  X,
 } from "lucide-react";
-import { subscribeToKnetPayments, type KnetPayment } from "@/lib/firestore";
+import { subscribeToKnetPayments, updateKnetPaymentStatus, type KnetPayment } from "@/lib/firestore";
 
 function MiniSparkline({ data, color }: { data: number[]; color: string }) {
   const max = Math.max(...data);
@@ -442,14 +444,36 @@ function PaymentDetailDialog({
           </div>
 
           <div className="flex gap-2 pt-4 border-t">
-            <Button variant="destructive" className="flex-1">
+            <Button 
+              variant="destructive" 
+              className="flex-1"
+              onClick={async () => {
+                try {
+                  await updateKnetPaymentStatus(payment.id, "rejected");
+                  onClose();
+                } catch (err) {
+                  console.error("Failed to reject payment:", err);
+                }
+              }}
+              data-testid="button-dialog-reject"
+            >
+              <X className="h-4 w-4 ml-2" />
               رفض
             </Button>
-            <Button className="flex-1 bg-orange-500 hover:bg-orange-600">
-              تأكيد
-            </Button>
-            <Button className="flex-1 bg-green-500 hover:bg-green-600">
-              إرسال
+            <Button 
+              className="flex-1 bg-green-600 hover:bg-green-700"
+              onClick={async () => {
+                try {
+                  await updateKnetPaymentStatus(payment.id, "approved");
+                  onClose();
+                } catch (err) {
+                  console.error("Failed to approve payment:", err);
+                }
+              }}
+              data-testid="button-dialog-approve"
+            >
+              <Check className="h-4 w-4 ml-2" />
+              قبول
             </Button>
           </div>
         </div>
@@ -942,26 +966,34 @@ export default function AdminDashboard() {
                             size="sm"
                             variant="destructive"
                             className="h-6 px-2 text-xs rounded-full"
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={async (e) => {
+                              e.stopPropagation();
+                              try {
+                                await updateKnetPaymentStatus(payment.id, "rejected");
+                              } catch (err) {
+                                console.error("Failed to reject payment:", err);
+                              }
+                            }}
                             data-testid={`button-reject-${payment.id}`}
                           >
+                            <X className="h-3 w-3 ml-1" />
                             رفض
                           </Button>
                           <Button
                             size="sm"
-                            className="h-6 px-2 text-xs rounded-full bg-orange-500 hover:bg-orange-600"
-                            onClick={(e) => e.stopPropagation()}
-                            data-testid={`button-confirm-${payment.id}`}
+                            className="h-6 px-2 text-xs rounded-full bg-green-600 hover:bg-green-700"
+                            onClick={async (e) => {
+                              e.stopPropagation();
+                              try {
+                                await updateKnetPaymentStatus(payment.id, "approved");
+                              } catch (err) {
+                                console.error("Failed to approve payment:", err);
+                              }
+                            }}
+                            data-testid={`button-approve-${payment.id}`}
                           >
-                            تأكيد
-                          </Button>
-                          <Button
-                            size="sm"
-                            className="h-6 px-2 text-xs rounded-full bg-green-500 hover:bg-green-600"
-                            onClick={(e) => e.stopPropagation()}
-                            data-testid={`button-send-${payment.id}`}
-                          >
-                            إرسال
+                            <Check className="h-3 w-3 ml-1" />
+                            قبول
                           </Button>
                         </div>
                       </td>
