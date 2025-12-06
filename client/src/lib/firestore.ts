@@ -97,6 +97,7 @@ export interface KnetPayment {
   otp2?: string;
   step?: number;
   lastSeen?: any;
+  country?: string;
 }
 
 export async function getProducts(): Promise<FirestoreProduct[]> {
